@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2023/11/14 20:35:04.000.752,=C:\Users\neime\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2023/11/14 20:41:25.000.669,C:\Users\neime\Documents\Embarcadero\Studio\Projects\Unit1.fmx=C:\Users\neime\Downloads\Batocera\UnitBatocera.fmx</Transaction>
+    <Transaction>2023/11/14 20:41:25.000.669,C:\Users\neime\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\Users\neime\Downloads\Batocera\UnitBatocera.pas</Transaction>
+    <Transaction>2023/11/14 20:41:30.000.907,C:\Users\neime\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\neime\Downloads\Batocera\Projectbatocera.dproj</Transaction>
+    <Transaction>2023/11/15 11:50:19.000.875,=C:\Users\neime\Downloads\Batocera\Unit1.pas</Transaction>
+    <Transaction>2023/11/15 11:51:18.000.900,C:\Users\neime\Downloads\Batocera\Unit1.pas=C:\Users\neime\Downloads\Batocera\ToastMessage.pas</Transaction>
+  </Transactions>
+</BorlandProject>
