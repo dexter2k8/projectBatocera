@@ -163,7 +163,7 @@ type
     openMediaDlg: TOpenDialog;
     btnCopiar: TButton;
     btnCheck: TButton;
-    ProgressBar1: TProgressBar;
+    pbCheck: TProgressBar;
     openCopyDlg: TOpenDialog;
     lblVideo: TLabel;
     edtVideo: TEdit;
@@ -175,6 +175,7 @@ type
     LinkControlToField7: TLinkControlToField;
     tbVolume: TTrackBar;
     lblVolume: TLabel;
+    pbLoad: TProgressBar;
     procedure cdsAfterScroll(DataSet: TDataSet);
     procedure FormShow(Sender: TObject);
     procedure abrirClick(Sender: TObject);
@@ -234,11 +235,15 @@ begin
   if OpenDlg.Execute then
   try
     isLoading:= true;
+    cds.DisableControls;
+    pbLoad.Value:= 0;
+    pbCheck.Value:= 0;
     cds.Open;
     cds.EmptyDataSet;
     filePath:= OpenDlg.FileName;
     fileData:= TStringList.Create;
     fileData.LoadFromFile(filePath, TEncoding.UTF8);
+    pbLoad.Max:= fileData.Count - 1;
     // converte o objeto XML em uma tabela
     for i := 0 to fileData.Count - 1 do
     begin
@@ -249,8 +254,11 @@ begin
           cds.FieldByName(tags[j]).AsString:= getData(fileData[i]).Replace('&amp;','&');
       if fileData[i].Trim = '</game>' then
         cds.Post;
+      Application.ProcessMessages;
+      pbLoad.Value:= i;
     end;
   finally
+    cds.EnableControls;
     isLoading:= false;
     if not cds.IsEmpty then
     begin
@@ -269,14 +277,14 @@ end;
 procedure TForm1.btnCheckClick(Sender: TObject);
 begin
   isLoading:= true;
-  ProgressBar1.Max:= lBox.Items.Count - 1;
+  pbCheck.Max:= lBox.Items.Count - 1;
   cds.First;
   while not cds.Eof do
   begin
     if not FileExists(getMediaPath(cdsPath.Value)) then
       lBox.ListItems[cds.RecNo - 1].ResultingTextSettings.FontColor:= TAlphaColorRec.Red;
     Application.ProcessMessages;
-    ProgressBar1.Value:= cds.RecNo;
+    pbCheck.Value:= cds.RecNo;
     cds.Next;
   end;
   isLoading:= false;
@@ -330,7 +338,7 @@ begin
             end;
           end;
       end;
-      fileData.Append('</gamelist>');
+      fileData.Append('</gameList>');
 
     finally
       fileData.SaveToFile(openCopyDlg.FileName, TEncoding.UTF8);
@@ -594,7 +602,7 @@ begin
       fileData.Append(#9'</game>');
       cds.Next;
     end;
-    fileData.Append('</gamelist>');
+    fileData.Append('</gameList>');
   finally
     cds.First;
     isLoading:= false;

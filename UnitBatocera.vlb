@@ -177,9 +177,6 @@ Coordinates=27,372,99,51
 [ImageList]
 Coordinates=657,1,62,33
 
-[ProgressBar1]
-Coordinates=240,396,81,51
-
 [btnOpenImage]
 Coordinates=354,221,86,51
 
@@ -203,4 +200,7 @@ Coordinates=320,130,54,51
 
 [cdsGenre]
 Coordinates=0,220,61,33
+
+[pbCheck]
+Coordinates=240,396,81,51
 
